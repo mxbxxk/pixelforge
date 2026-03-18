@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Meridian Dental — NHS & Private Dentistry</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:#fff;color:#1a2535;overflow-x:hidden;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #e8edf4;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:70px;box-shadow:0 1px 16px rgba(0,0,0,0.05);}
+.logo{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#1a2535;}
+.logo span{color:#1b6ca8;display:block;font-size:0.75rem;font-family:'DM Sans',sans-serif;letter-spacing:0.15em;text-transform:uppercase;font-weight:600;margin-top:-4px;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:#4a5568;font-size:0.87rem;text-decoration:none;font-weight:400;transition:color 0.2s;}
+.nav-links a:hover{color:#1b6ca8;}
+.nav-actions{display:flex;align-items:center;gap:1rem;}
+.phone-num{font-size:0.88rem;font-weight:600;color:#1a2535;}
+.btn-book{background:#1b6ca8;color:#fff;padding:0.6rem 1.5rem;border-radius:4px;font-size:0.85rem;font-weight:500;text-decoration:none;transition:all 0.2s;}
+.btn-book:hover{background:#1558870;}
+
+/* ANNOUNCE */
+.announce{background:#1b6ca8;text-align:center;padding:0.65rem;font-size:0.8rem;color:rgba(255,255,255,0.9);font-weight:400;}
+.announce a{color:#fff;font-weight:600;}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:85vh;background:#f0f6ff;}
+.hero-left{padding:5rem 4rem;display:flex;align-items:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:#e8f0fb;border:1px solid rgba(27,108,168,0.2);padding:0.4rem 1rem;border-radius:50px;font-size:0.75rem;color:#1b6ca8;font-weight:600;margin-bottom:2rem;}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2.2rem,4vw,3.8rem);color:#1a2535;line-height:1.15;margin-bottom:1.25rem;}
+.hero h1 span{color:#1b6ca8;}
+.hero-sub{color:#5a6a7a;font-size:1rem;line-height:1.8;max-width:460px;margin-bottom:2.5rem;font-weight:300;}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem;}
+.btn-blue{background:#1b6ca8;color:#fff;padding:0.9rem 2rem;border-radius:4px;font-weight:500;font-size:0.9rem;text-decoration:none;transition:all 0.2s;}
+.btn-blue:hover{background:#155887;transform:translateY(-2px);}
+.btn-outline-blue{border:1px solid #1b6ca8;color:#1b6ca8;padding:0.9rem 2rem;border-radius:4px;font-size:0.9rem;text-decoration:none;transition:all 0.2s;}
+.btn-outline-blue:hover{background:#1b6ca8;color:#fff;}
+.trust-row{display:flex;gap:2rem;flex-wrap:wrap;}
+.trust-item{display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;color:#5a6a7a;}
+.hero-right{background:linear-gradient(135deg,#cde4f5,#a8d1f0);display:flex;align-items:center;justify-content:center;font-size:8rem;position:relative;overflow:hidden;}
+.hero-right::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(to top,#f0f6ff,transparent);}
+
+/* SERVICES */
+.services{padding:6rem 2rem;background:#fff;}
+.services .container{max-width:1100px;margin:0 auto;}
+.section-header{text-align:center;margin-bottom:3.5rem;}
+.section-label{font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;color:#1b6ca8;display:block;margin-bottom:0.75rem;font-weight:600;}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,3.5vw,2.8rem);color:#1a2535;}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.service-card{background:#f8fbff;border:1px solid #e0ecf7;border-radius:8px;padding:2rem;transition:all 0.25s;}
+.service-card:hover{border-color:#1b6ca8;transform:translateY(-4px);box-shadow:0 8px 32px rgba(27,108,168,0.1);}
+.service-icon{font-size:2rem;margin-bottom:1rem;display:block;}
+.service-card h3{font-size:1.05rem;font-weight:600;color:#1a2535;margin-bottom:0.5rem;}
+.service-card p{font-size:0.85rem;color:#5a6a7a;line-height:1.65;}
+.service-card .from{font-size:0.85rem;font-weight:600;color:#1b6ca8;margin-top:1rem;}
+.nhs-badge{display:inline-block;background:#005eb8;color:#fff;padding:0.2rem 0.5rem;font-size:0.7rem;font-weight:600;border-radius:2px;margin-left:0.5rem;}
+
+/* TEAM */
+.team{padding:6rem 2rem;background:#f8fbff;}
+.team .container{max-width:1100px;margin:0 auto;}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem;}
+.team-card{background:#fff;border-radius:8px;overflow:hidden;border:1px solid #e0ecf7;transition:all 0.25s;}
+.team-card:hover{border-color:#1b6ca8;transform:translateY(-4px);}
+.team-img{height:200px;display:flex;align-items:center;justify-content:center;font-size:4rem;}
+.t1{background:linear-gradient(135deg,#cde4f5,#a8d1f0);}
+.t2{background:linear-gradient(135deg,#d5f0e0,#a8e0c0);}
+.t3{background:linear-gradient(135deg,#f5d5cd,#f0a8a8);}
+.t4{background:linear-gradient(135deg,#e0d5f5,#c0a8e8);}
+.team-body{padding:1.25rem;}
+.team-name{font-weight:600;color:#1a2535;font-size:0.95rem;margin-bottom:0.2rem;}
+.team-role{font-size:0.78rem;color:#1b6ca8;margin-bottom:0.5rem;font-weight:500;}
+.team-qual{font-size:0.75rem;color:#7a8a9a;line-height:1.5;}
+
+/* BOOKING */
+.booking{padding:6rem 2rem;background:#fff;}
+.booking .container{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:start;}
+.booking-left h2{font-family:'DM Serif Display',serif;font-size:2.2rem;color:#1a2535;margin-bottom:1rem;}
+.booking-left p{color:#5a6a7a;font-size:0.92rem;line-height:1.75;margin-bottom:2rem;}
+.booking-info{display:flex;flex-direction:column;gap:1.25rem;}
+.info-item{display:flex;align-items:flex-start;gap:0.75rem;}
+.info-icon{width:36px;height:36px;background:#e8f0fb;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0;}
+.info-item h4{font-size:0.82rem;color:#5a6a7a;font-weight:400;margin-bottom:0.1rem;}
+.info-item p{font-size:0.9rem;color:#1a2535;font-weight:500;}
+.booking-form{background:#f8fbff;border:1px solid #e0ecf7;border-radius:8px;padding:2.5rem;}
+.booking-form h3{font-family:'DM Serif Display',serif;font-size:1.4rem;color:#1a2535;margin-bottom:1.5rem;}
+.form-group{margin-bottom:1rem;}
+.form-group label{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:#5a6a7a;display:block;margin-bottom:0.4rem;font-weight:600;}
+.form-group input,.form-group select{width:100%;border:1px solid #d0dce8;border-radius:4px;padding:0.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:#1a2535;outline:none;transition:border-color 0.2s;background:#fff;}
+.form-group input:focus,.form-group select:focus{border-color:#1b6ca8;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.gdpr-note{font-size:0.75rem;color:#7a8a9a;margin-top:0.75rem;line-height:1.5;}
+
+/* REVIEWS */
+.reviews{padding:6rem 2rem;background:#f0f6ff;}
+.reviews .container{max-width:1100px;margin:0 auto;}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.review-card{background:#fff;border-radius:8px;padding:1.75rem;border:1px solid #e0ecf7;}
+.stars{color:#f5a623;font-size:0.9rem;margin-bottom:0.75rem;letter-spacing:1px;}
+.review-text{font-size:0.88rem;color:#4a5568;line-height:1.7;margin-bottom:1.25rem;font-style:italic;}
+.reviewer{display:flex;align-items:center;gap:0.75rem;}
+.reviewer-avatar{width:36px;height:36px;border-radius:50%;background:#e8f0fb;display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:700;color:#1b6ca8;}
+.reviewer-name{font-size:0.88rem;font-weight:600;color:#1a2535;}
+.reviewer-date{font-size:0.75rem;color:#7a8a9a;}
+
+/* FOOTER */
+footer{background:#1a2535;padding:4rem 2rem 2rem;color:rgba(255,255,255,0.55);}
+footer .container{max-width:1100px;margin:0 auto;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+.footer-logo{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#fff;display:block;margin-bottom:0.75rem;}
+footer h5{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.15em;color:rgba(255,255,255,0.8);margin-bottom:1.25rem;font-weight:600;}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
+footer li a{font-size:0.85rem;color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.2s;}
+footer li a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:1.5rem;text-align:center;font-size:0.78rem;}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;}
+  .hero-right{height:40vh;font-size:5rem;}
+  .services-grid{grid-template-columns:1fr 1fr;}
+  .team-grid{grid-template-columns:1fr 1fr;}
+  .booking .container{grid-template-columns:1fr;}
+  .reviews-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  nav .nav-links{display:none;}
+  .form-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="announce">🎉 Now accepting new NHS patients — <a href="#">Register today →</a></div>
+
+<nav>
+  <div class="logo">Meridian Dental<span>NHS & Private · Harley Street</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Treatments</a></li>
+    <li><a href="#">Our Team</a></li>
+    <li><a href="#">NHS Patients</a></li>
+    <li><a href="#">Fees</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <span class="phone-num">020 7456 8900</span>
+    <a href="#booking" class="btn-book">Book Online</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div>
+      <div class="hero-badge">⭐ 4.9 Google Rating · CQC Registered · GDC Registered</div>
+      <h1>Your <span>Healthiest</span><br/>Smile Starts Here</h1>
+      <p class="hero-sub">Exceptional dental care in the heart of London. NHS and private treatments for the whole family, with a warm and gentle approach.</p>
+      <div class="hero-actions">
+        <a href="#booking" class="btn-blue">Book an Appointment</a>
+        <a href="#treatments" class="btn-outline-blue">Our Treatments</a>
+      </div>
+      <div class="trust-row">
+        <div class="trust-item">🦷 GDC Registered</div>
+        <div class="trust-item">🏥 CQC Regulated</div>
+        <div class="trust-item">🇬🇧 NHS & Private</div>
+        <div class="trust-item">🔒 GDPR Compliant</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">🦷</div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="treatments">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">What We Offer</span>
+      <div class="section-title">Our Treatments</div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card"><span class="service-icon">🦷</span><h3>General Dentistry <span class="nhs-badge">NHS</span></h3><p>Routine check-ups, fillings, extractions, and hygienist appointments. NHS-registered and accepting new patients.</p><div class="from">NHS Band 1: £26.80</div></div>
+      <div class="service-card"><span class="service-icon">✨</span><h3>Teeth Whitening</h3><p>Professional in-chair and take-home whitening systems. Achieve up to 8 shades lighter in a single session.</p><div class="from">From £299</div></div>
+      <div class="service-card"><span class="service-icon">🔧</span><h3>Orthodontics / Invisalign</h3><p>Clear aligners and traditional braces for teens and adults. Free initial consultation with X-ray review.</p><div class="from">From £1,800</div></div>
+      <div class="service-card"><span class="service-icon">🦿</span><h3>Dental Implants</h3><p>Single and full-arch implants with lifetime guarantee. All procedures carried out by our specialist implantologist.</p><div class="from">From £2,500 per implant</div></div>
+      <div class="service-card"><span class="service-icon">🌟</span><h3>Composite Bonding</h3><p>Non-invasive cosmetic treatment to reshape, repair, and whiten teeth. No drilling or anaesthetic required.</p><div class="from">From £180 per tooth</div></div>
+      <div class="service-card"><span class="service-icon">😰</span><h3>Nervous Patient Care</h3><p>Specialist care for anxious patients, including inhalation sedation and a calm, unhurried approach.</p><div class="from">Book a consultation</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Meet the Team</span>
+      <div class="section-title">Experienced. Friendly. Qualified.</div>
+    </div>
+    <div class="team-grid">
+      <div class="team-card"><div class="team-img t1">👨‍⚕️</div><div class="team-body"><div class="team-name">Dr. James Meridian</div><div class="team-role">Principal Dentist</div><div class="team-qual">BDS (Hons), MFGDP · 18 years experience</div></div></div>
+      <div class="team-card"><div class="team-img t2">👩‍⚕️</div><div class="team-body"><div class="team-name">Dr. Priya Sharma</div><div class="team-role">Implant Specialist</div><div class="team-qual">BDS, PgDip Implantology · 12 years experience</div></div></div>
+      <div class="team-card"><div class="team-img t3">👩‍⚕️</div><div class="team-body"><div class="team-name">Dr. Sarah Collins</div><div class="team-role">Orthodontist</div><div class="team-qual">BDS, MOrth RCSEd · Invisalign Certified</div></div></div>
+      <div class="team-card"><div class="team-img t4">👨‍⚕️</div><div class="team-body"><div class="team-name">Tom Brierley RDH</div><div class="team-role">Lead Hygienist</div><div class="team-qual">DipDH · Air-flow & PMPR specialist</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+  <div class="container">
+    <div class="booking-left">
+      <h2>Book Your Appointment</h2>
+      <p>Use our online booking form or give us a call. We aim to offer new patient appointments within 1 week. Emergency appointments available same-day where possible.</p>
+      <div class="booking-info">
+        <div class="info-item"><div class="info-icon">📞</div><div><h4>Phone</h4><p>020 7456 8900</p></div></div>
+        <div class="info-item"><div class="info-icon">📍</div><div><h4>Address</h4><p>14 Harley Street, Marylebone, London W1G 9PH</p></div></div>
+        <div class="info-item"><div class="info-icon">🕐</div><div><h4>Opening Hours</h4><p>Mon–Fri 8am–6pm · Sat 9am–2pm</p></div></div>
+        <div class="info-item"><div class="info-icon">🚇</div><div><h4>Nearest Tube</h4><p>Regent's Park or Great Portland Street</p></div></div>
+      </div>
+    </div>
+    <div class="booking-form">
+      <h3>Request an Appointment</h3>
+      <div class="form-row">
+        <div class="form-group"><label>First Name *</label><input type="text" placeholder="Sarah"/></div>
+        <div class="form-group"><label>Last Name *</label><input type="text" placeholder="Collins"/></div>
+      </div>
+      <div class="form-group"><label>Email Address *</label><input type="email" placeholder="sarah@email.co.uk"/></div>
+      <div class="form-group"><label>Phone Number *</label><input type="tel" placeholder="020 7..."/></div>
+      <div class="form-group"><label>Treatment Required</label>
+        <select><option>General Check-Up</option><option>Hygienist Appointment</option><option>Teeth Whitening</option><option>Orthodontics / Invisalign</option><option>Dental Implants</option><option>Emergency Appointment</option><option>Other / Not Sure</option></select>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Preferred Date</label><input type="date"/></div>
+        <div class="form-group"><label>Preferred Time</label><select><option>Morning (8am–12pm)</option><option>Afternoon (12pm–4pm)</option><option>Late (4pm–6pm)</option><option>Saturday</option></select></div>
+      </div>
+      <div class="form-group"><label>Are you an NHS or Private patient?</label><select><option>NHS Patient</option><option>Private Patient</option><option>New Patient — Not Sure</option></select></div>
+      <button class="btn-blue" style="width:100%;border:none;cursor:pointer;font-size:0.9rem;padding:0.9rem;border-radius:4px;margin-top:0.5rem;">Request Appointment →</button>
+      <p class="gdpr-note">🔒 Your data is handled in accordance with UK GDPR. We will only use it to manage your appointment and provide dental care.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Patient Reviews</span>
+      <div class="section-title">What Our Patients Say</div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">"I've been terrified of the dentist for 20 years. Dr. Meridian and the team were so gentle and patient — I've now had my implants fitted and couldn't be happier."</p><div class="reviewer"><div class="reviewer-avatar">PH</div><div><div class="reviewer-name">Patricia Hughes</div><div class="reviewer-date">March 2025 · Google Review</div></div></div></div>
+      <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">"Brilliant practice. Fast to get appointments, clean and modern, and the hygienist is absolutely excellent. Have recommended to everyone in my family."</p><div class="reviewer"><div class="reviewer-avatar">DK</div><div><div class="reviewer-name">Daniel Kim</div><div class="reviewer-date">February 2025 · Google Review</div></div></div></div>
+      <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">"My Invisalign journey has been amazing. Clear communication throughout, and my results after 8 months are better than I ever expected. Highly recommend Dr. Collins."</p><div class="reviewer"><div class="reviewer-avatar">AM</div><div><div class="reviewer-name">Amelia Morgan</div><div class="reviewer-date">January 2025 · Google Review</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <span class="footer-logo">Meridian Dental</span>
+        <p style="font-size:0.85rem;line-height:1.7;max-width:320px;">NHS & private dental care in the heart of London. CQC regulated. GDC registered. Accepting new patients.</p>
+        <div style="margin-top:1rem;font-size:0.85rem;">📞 <a href="tel:02074568900" style="color:rgba(255,255,255,0.7);text-decoration:none;">020 7456 8900</a></div>
+      </div>
+      <div>
+        <h5>Treatments</h5>
+        <ul>
+          <li><a href="#">General Dentistry</a></li>
+          <li><a href="#">Teeth Whitening</a></li>
+          <li><a href="#">Orthodontics</a></li>
+          <li><a href="#">Dental Implants</a></li>
+          <li><a href="#">Composite Bonding</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Practice</h5>
+        <ul>
+          <li><a href="#">Our Team</a></li>
+          <li><a href="#">NHS Information</a></li>
+          <li><a href="#">Fees</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 Meridian Dental. CQC Regulated · GDC Registered · UK GDPR Compliant · <a href="#" style="color:rgba(255,255,255,0.7);">Privacy Policy</a></p></div>
+  </div>
+</footer>
+
+</body>
+</html>

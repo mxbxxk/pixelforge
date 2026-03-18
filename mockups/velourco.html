@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Velour & Co. — Contemporary Fashion</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:#fafafa;color:#1a1a1a;overflow-x:hidden;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#fafafa;border-bottom:1px solid #e8e8e8;padding:0 3rem;display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:#1a1a1a;letter-spacing:0.12em;text-transform:uppercase;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{color:#4a4a4a;font-size:0.78rem;text-decoration:none;text-transform:uppercase;letter-spacing:0.12em;transition:color 0.2s;}
+.nav-links a:hover{color:#1a1a1a;}
+.nav-right{display:flex;align-items:center;gap:1.5rem;}
+.nav-icon{font-size:1rem;cursor:pointer;color:#4a4a4a;transition:color 0.2s;}
+.nav-icon:hover{color:#1a1a1a;}
+.cart-count{background:#1a1a1a;color:#fff;width:16px;height:16px;border-radius:50%;font-size:0.65rem;display:inline-flex;align-items:center;justify-content:center;margin-left:-6px;vertical-align:top;}
+
+/* ANNOUNCEMENT BAR */
+.announce{background:#1a1a1a;text-align:center;padding:0.6rem;font-size:0.75rem;color:rgba(255,255,255,0.85);letter-spacing:0.12em;}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:90vh;}
+.hero-left{background:linear-gradient(135deg,#f0ece6,#e8e0d5);display:flex;align-items:center;justify-content:center;font-size:10rem;position:relative;overflow:hidden;}
+.hero-left::before{content:'SS25';position:absolute;bottom:2rem;right:2rem;font-family:'Cormorant Garamond',serif;font-size:8rem;font-weight:300;color:rgba(0,0,0,0.04);line-height:1;}
+.hero-right{background:#fafafa;display:flex;align-items:center;padding:5rem 4rem;}
+.hero-eyebrow{font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:#7a7a7a;margin-bottom:1.5rem;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5vw,5rem);font-weight:300;color:#1a1a1a;line-height:1.05;margin-bottom:1.5rem;}
+.hero h1 em{font-style:italic;}
+.hero-sub{font-size:0.9rem;color:#7a7a7a;line-height:1.8;margin-bottom:2.5rem;font-weight:300;max-width:380px;}
+.btn-black{background:#1a1a1a;color:#fff;padding:0.9rem 2.5rem;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.15em;text-decoration:none;display:inline-block;transition:all 0.25s;}
+.btn-black:hover{background:#333;}
+.btn-outline-black{border:1px solid #1a1a1a;color:#1a1a1a;padding:0.9rem 2.5rem;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.15em;text-decoration:none;display:inline-block;transition:all 0.25s;margin-left:1rem;}
+.btn-outline-black:hover{background:#1a1a1a;color:#fff;}
+
+/* CATEGORIES */
+.categories{padding:5rem 3rem;background:#fafafa;}
+.categories .container{max-width:1200px;margin:0 auto;}
+.section-eyebrow{font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:#7a7a7a;margin-bottom:0.75rem;display:block;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;color:#1a1a1a;margin-bottom:3rem;}
+.cat-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:1rem;}
+.cat-card{position:relative;overflow:hidden;cursor:pointer;}
+.cat-card:hover .cat-overlay{opacity:1;}
+.cat-img{height:380px;display:flex;align-items:center;justify-content:center;font-size:5rem;}
+.cat-sm .cat-img{height:185px;}
+.c1{background:linear-gradient(135deg,#2a1f1a,#4a3528);}
+.c2{background:linear-gradient(135deg,#1a1a2a,#2a2a3a);}
+.c3{background:linear-gradient(135deg,#1a2a1a,#2a3a28);}
+.c4{background:linear-gradient(135deg,#2a1a2a,#3a2838);}
+.cat-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.3);display:flex;align-items:flex-end;padding:1.5rem;opacity:0;transition:opacity 0.3s;}
+.cat-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#fff;font-weight:300;letter-spacing:0.05em;}
+.cat-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.15em;color:rgba(255,255,255,0.7);display:block;margin-bottom:0.25rem;}
+.cat-sm-grid{display:grid;grid-template-rows:1fr 1fr;gap:1rem;}
+
+/* PRODUCTS */
+.products{padding:5rem 3rem;background:#fff;}
+.products .container{max-width:1200px;margin:0 auto;}
+.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3rem;}
+.product-card{cursor:pointer;}
+.product-card:hover .product-img-wrap::after{opacity:1;}
+.product-img-wrap{position:relative;overflow:hidden;margin-bottom:1rem;}
+.product-img{height:320px;display:flex;align-items:center;justify-content:center;font-size:4rem;}
+.product-img-wrap::after{content:'Quick View';position:absolute;inset:0;background:rgba(0,0,0,0.5);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.15em;opacity:0;transition:opacity 0.3s;}
+.pi1{background:linear-gradient(135deg,#e8e0d5,#d5c8b8);}
+.pi2{background:linear-gradient(135deg,#1a1a2a,#2d2d3d);}
+.pi3{background:linear-gradient(135deg,#2d1a1a,#3d2828);}
+.pi4{background:linear-gradient(135deg,#1a2a1a,#283a28);}
+.pi5{background:linear-gradient(135deg,#2a1a2a,#3a2838);}
+.pi6{background:linear-gradient(135deg,#2a2a1a,#3a3828);}
+.pi7{background:linear-gradient(135deg,#1a2a2a,#283a3a);}
+.pi8{background:linear-gradient(135deg,#2a1a1a,#3a2820);}
+.product-brand{font-size:0.7rem;color:#7a7a7a;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.2rem;}
+.product-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:#1a1a1a;margin-bottom:0.4rem;}
+.product-price{font-size:0.88rem;color:#1a1a1a;font-weight:500;}
+.product-price .old{text-decoration:line-through;color:#9a9a9a;margin-right:0.5rem;}
+.product-price .sale{color:#c53030;}
+.product-actions{display:flex;gap:0.5rem;margin-top:0.75rem;}
+.size-btn{border:1px solid #e0e0e0;padding:0.25rem 0.5rem;font-size:0.7rem;cursor:pointer;transition:all 0.2s;background:none;}
+.size-btn:hover{border-color:#1a1a1a;background:#1a1a1a;color:#fff;}
+
+/* BANNER */
+.banner{background:#1a1a1a;padding:5rem 3rem;color:#fff;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.banner h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:300;line-height:1.1;margin-bottom:1rem;}
+.banner h2 em{font-style:italic;color:rgba(255,255,255,0.5);}
+.banner p{color:rgba(255,255,255,0.65);font-size:0.9rem;line-height:1.8;margin-bottom:2rem;font-weight:300;}
+.btn-white{background:#fff;color:#1a1a1a;padding:0.9rem 2.5rem;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.15em;text-decoration:none;display:inline-block;font-weight:500;}
+.banner-right{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.banner-img{height:220px;display:flex;align-items:center;justify-content:center;font-size:4rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);}
+
+/* EMAIL SIGNUP */
+.signup{padding:5rem 3rem;background:#f5f2ee;text-align:center;}
+.signup h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;color:#1a1a1a;margin-bottom:0.75rem;}
+.signup p{color:#7a7a7a;font-size:0.88rem;margin-bottom:2rem;font-weight:300;}
+.signup-form{display:flex;max-width:480px;margin:0 auto;gap:0;}
+.signup-form input{flex:1;border:1px solid #d0d0d0;border-right:none;padding:0.9rem 1.25rem;font-family:'Inter',sans-serif;font-size:0.88rem;outline:none;background:#fff;}
+.signup-form button{background:#1a1a1a;color:#fff;border:none;padding:0.9rem 1.75rem;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.12em;cursor:pointer;}
+
+/* FOOTER */
+footer{background:#1a1a1a;padding:4rem 3rem 2rem;color:rgba(255,255,255,0.5);}
+footer .container{max-width:1200px;margin:0 auto;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+.footer-brand .logo{color:#fff;display:block;margin-bottom:0.75rem;}
+.footer-brand p{font-size:0.82rem;line-height:1.7;max-width:240px;}
+footer h5{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.2em;color:#fff;margin-bottom:1.25rem;}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
+footer li a{font-size:0.82rem;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;}
+footer li a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;}
+  .hero-left{height:50vh;font-size:6rem;}
+  .cat-grid{grid-template-columns:1fr 1fr;}
+  .products-grid{grid-template-columns:1fr 1fr;}
+  .banner{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  nav .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="announce">FREE UK DELIVERY ON ALL ORDERS OVER £150 · SS25 COLLECTION NOW LIVE</div>
+
+<nav>
+  <div class="logo">Velour & Co.</div>
+  <ul class="nav-links">
+    <li><a href="#">New In</a></li>
+    <li><a href="#">Women</a></li>
+    <li><a href="#">Men</a></li>
+    <li><a href="#">Accessories</a></li>
+    <li><a href="#">Sale</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-icon">🔍</span>
+    <span class="nav-icon">👤</span>
+    <span class="nav-icon">🛍️<span class="cart-count">3</span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">🧥</div>
+  <div class="hero-right">
+    <div>
+      <div class="hero-eyebrow">Spring / Summer 2025 Collection</div>
+      <h1>Dressed for <em>Every</em><br/>Moment</h1>
+      <p class="hero-sub">Contemporary fashion for the modern woman. Clean lines, considered materials, and timeless silhouettes crafted to last.</p>
+      <a href="#products" class="btn-black">Shop SS25</a>
+      <a href="#" class="btn-outline-black">View Lookbook</a>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories">
+  <div class="container">
+    <span class="section-eyebrow">Browse By Category</span>
+    <div class="section-title">Shop the Edit</div>
+    <div class="cat-grid">
+      <div class="cat-card">
+        <div class="cat-img c1">👗</div>
+        <div class="cat-overlay"><div><span class="cat-label">Explore</span><div class="cat-name">Dresses & Co-ords</div></div></div>
+      </div>
+      <div class="cat-sm-grid">
+        <div class="cat-card cat-sm">
+          <div class="cat-img c2">👖</div>
+          <div class="cat-overlay"><div><span class="cat-label">Shop</span><div class="cat-name" style="font-size:1.2rem;">Trousers</div></div></div>
+        </div>
+        <div class="cat-card cat-sm">
+          <div class="cat-img c3">👜</div>
+          <div class="cat-overlay"><div><span class="cat-label">Shop</span><div class="cat-name" style="font-size:1.2rem;">Bags</div></div></div>
+        </div>
+      </div>
+      <div class="cat-sm-grid">
+        <div class="cat-card cat-sm">
+          <div class="cat-img c4">🧣</div>
+          <div class="cat-overlay"><div><span class="cat-label">Shop</span><div class="cat-name" style="font-size:1.2rem;">Accessories</div></div></div>
+        </div>
+        <div class="cat-card cat-sm">
+          <div class="cat-img" style="background:linear-gradient(135deg,#2a2a1a,#3a381a);">👟</div>
+          <div class="cat-overlay"><div><span class="cat-label">Shop</span><div class="cat-name" style="font-size:1.2rem;">Footwear</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="container">
+    <span class="section-eyebrow">New Arrivals</span>
+    <div class="section-title">Just Landed</div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img-wrap"><div class="product-img pi1">🧥</div></div>
+        <div class="product-brand">Velour & Co.</div>
+        <div class="product-name">Linen Oversized Blazer</div>
+        <div class="product-price">£185</div>
+        <div class="product-actions"><button class="size-btn">XS</button><button class="size-btn">S</button><button class="size-btn">M</button><button class="size-btn">L</button></div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap"><div class="product-img pi2">👗</div></div>
+        <div class="product-brand">Velour & Co.</div>
+        <div class="product-name">Maxi Silk Slip Dress</div>
+        <div class="product-price"><span class="old">£220</span><span class="sale">£154</span></div>
+        <div class="product-actions"><button class="size-btn">XS</button><button class="size-btn">S</button><button class="size-btn">M</button></div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap"><div class="product-img pi3">👜</div></div>
+        <div class="product-brand">Velour & Co.</div>
+        <div class="product-name">Structured Leather Tote</div>
+        <div class="product-price">£295</div>
+        <div class="product-actions"><button class="size-btn">One Size</button></div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap"><div class="product-img pi4">🧣</div></div>
+        <div class="product-brand">Velour & Co.</div>
+        <div class="product-name">Cashmere Wide Scarf</div>
+        <div class="product-price">£89</div>
+        <div class="product-actions"><button class="size-btn">One Size</button></div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap"><div class="product-img pi5">👖</div></div>
+        <div class="product-brand">Velour & Co.</div>
+        <div class="product-name">Wide Leg Linen Trousers</div>
+        <div class="product-price">£145</div>
+        <div class="product-actions"><button class="size-btn">XS</button><button class="size-btn">S</button><button class="size-btn">M</button><button class="size-btn">L</button><button class="size-btn">XL</button></div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap"><div class="product-img pi6">👚</div></div>
+        <div class="product-brand">Velour & Co.</div>
+        <div class="product-name">Relaxed Linen Shirt</div>
+        <div class="product-price"><span class="old">£95</span><span class="sale">£65</span></div>
+        <div class="product-actions"><button class="size-btn">XS</button><button class="size-btn">S</button><button class="size-btn">M</button></div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap"><div class="product-img pi7">🥿</div></div>
+        <div class="product-brand">Velour & Co.</div>
+        <div class="product-name">Leather Mule Slingback</div>
+        <div class="product-price">£175</div>
+        <div class="product-actions"><button class="size-btn">37</button><button class="size-btn">38</button><button class="size-btn">39</button><button class="size-btn">40</button></div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap"><div class="product-img pi8">🧤</div></div>
+        <div class="product-brand">Velour & Co.</div>
+        <div class="product-name">Leather Gloves — Tan</div>
+        <div class="product-price">£75</div>
+        <div class="product-actions"><button class="size-btn">S/M</button><button class="size-btn">M/L</button></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:3rem;"><a href="#" class="btn-black" style="text-decoration:none;">View All New In →</a></div>
+  </div>
+</section>
+
+<!-- BANNER -->
+<section class="banner">
+  <div>
+    <h2>Timeless pieces for <em>every chapter</em></h2>
+    <p>Our SS25 collection is built around the idea of effortless dressing. Relaxed silhouettes, natural fibres, and a palette that moves with you from morning to evening.</p>
+    <a href="#" class="btn-white">Explore the Lookbook</a>
+  </div>
+  <div class="banner-right">
+    <div class="banner-img">🌿</div>
+    <div class="banner-img">☀️</div>
+    <div class="banner-img">🎨</div>
+    <div class="banner-img">✨</div>
+  </div>
+</section>
+
+<!-- SIGNUP -->
+<section class="signup">
+  <h2>The Edit, Delivered to You</h2>
+  <p>Subscribe to receive new arrivals, exclusive offers, and style inspiration. Unsubscribe any time.</p>
+  <div class="signup-form">
+    <input type="email" placeholder="Your email address"/>
+    <button>Subscribe</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo">Velour & Co.</span>
+        <p>Contemporary fashion for the modern woman. Responsibly made, thoughtfully designed.</p>
+      </div>
+      <div>
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="#">New In</a></li>
+          <li><a href="#">Women</a></li>
+          <li><a href="#">Men</a></li>
+          <li><a href="#">Accessories</a></li>
+          <li><a href="#">Sale</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Help</h5>
+        <ul>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Delivery & Returns</a></li>
+          <li><a href="#">Track My Order</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Stockists</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Velour & Co. All rights reserved.</p>
+      <p>Free UK returns · Secure checkout · Stripe & PayPal accepted</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

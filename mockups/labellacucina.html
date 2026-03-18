@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>La Bella Cucina — Italian Restaurant</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lato',sans-serif;background:#faf8f4;color:#2c2118;overflow-x:hidden;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(20,12,5,0.97);backdrop-filter:blur(12px);padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:70px;}
+.logo{font-family:'Playfair Display',serif;font-size:1.5rem;color:#d4a853;letter-spacing:0.05em;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:rgba(255,255,255,0.8);font-size:0.88rem;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:#d4a853;}
+.btn-reserve{background:#d4a853;color:#140c05;padding:0.55rem 1.4rem;border-radius:2px;font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;text-decoration:none;transition:all 0.2s;}
+.btn-reserve:hover{background:#c49240;}
+
+/* HERO */
+.hero{height:92vh;background:linear-gradient(160deg,#140c05 0%,#2c1a0a 40%,#1a0f06 100%);display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4a853' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+.hero-content{position:relative;z-index:2;}
+.hero-eyebrow{font-size:0.75rem;letter-spacing:0.25em;text-transform:uppercase;color:#d4a853;margin-bottom:1.5rem;opacity:0.9;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,5.5rem);color:#faf8f4;line-height:1.1;margin-bottom:1.5rem;}
+.hero h1 em{color:#d4a853;font-style:italic;}
+.hero-sub{font-size:1.05rem;color:rgba(250,248,244,0.65);max-width:500px;margin:0 auto 2.5rem;line-height:1.8;font-weight:300;}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-gold{background:#d4a853;color:#140c05;padding:0.85rem 2.2rem;border-radius:2px;font-weight:700;font-size:0.9rem;text-transform:uppercase;letter-spacing:0.12em;text-decoration:none;transition:all 0.25s;}
+.btn-gold:hover{background:#c49240;transform:translateY(-2px);}
+.btn-outline-gold{border:1px solid rgba(212,168,83,0.5);color:#d4a853;padding:0.85rem 2.2rem;border-radius:2px;font-size:0.9rem;text-transform:uppercase;letter-spacing:0.12em;text-decoration:none;transition:all 0.25s;}
+.btn-outline-gold:hover{border-color:#d4a853;background:rgba(212,168,83,0.08);}
+.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);color:rgba(212,168,83,0.5);font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:0.5rem;}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(212,168,83,0.5),transparent);}
+
+/* DIVIDER */
+.section-divider{display:flex;align-items:center;justify-content:center;gap:1.5rem;padding:0.5rem 0;}
+.divider-line{height:1px;width:80px;background:linear-gradient(90deg,transparent,#d4a853,transparent);}
+.divider-icon{color:#d4a853;font-size:1rem;}
+
+/* INTRO */
+.intro{padding:6rem 2rem;text-align:center;background:#faf8f4;}
+.section-label{font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;color:#d4a853;margin-bottom:1rem;display:block;}
+.intro h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);color:#140c05;margin-bottom:1.25rem;line-height:1.2;}
+.intro p{max-width:620px;margin:0 auto;color:#5a4a3a;line-height:1.85;font-size:1rem;font-weight:300;}
+.intro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;max-width:900px;margin:4rem auto 0;}
+.intro-item{text-align:center;padding:2rem 1.5rem;border:1px solid rgba(212,168,83,0.2);border-radius:2px;}
+.intro-item .num{font-family:'Playfair Display',serif;font-size:2.5rem;color:#d4a853;line-height:1;font-weight:700;}
+.intro-item .label{font-size:0.8rem;color:#7a6a5a;text-transform:uppercase;letter-spacing:0.12em;margin-top:0.4rem;}
+
+/* MENU PREVIEW */
+.menu-section{background:#140c05;padding:6rem 2rem;color:#faf8f4;}
+.menu-section .container{max-width:1100px;margin:0 auto;}
+.menu-section .section-label{color:#d4a853;}
+.menu-section h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);color:#faf8f4;text-align:center;margin-bottom:0.5rem;}
+.menu-tabs{display:flex;gap:0;justify-content:center;margin:2rem 0 3rem;border-bottom:1px solid rgba(212,168,83,0.2);}
+.menu-tab{padding:0.75rem 2rem;font-size:0.82rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(250,248,244,0.5);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;background:none;border-top:none;border-left:none;border-right:none;font-family:'Lato',sans-serif;}
+.menu-tab.active{color:#d4a853;border-bottom-color:#d4a853;}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.menu-item{display:flex;justify-content:space-between;align-items:flex-start;padding:1.25rem 0;border-bottom:1px solid rgba(255,255,255,0.06);}
+.menu-item-info h4{font-family:'Playfair Display',serif;font-size:1rem;color:#faf8f4;margin-bottom:0.3rem;}
+.menu-item-info p{font-size:0.82rem;color:rgba(250,248,244,0.5);line-height:1.5;max-width:280px;}
+.menu-price{font-family:'Playfair Display',serif;color:#d4a853;font-size:1.05rem;white-space:nowrap;margin-left:1rem;}
+
+/* GALLERY */
+.gallery{padding:6rem 2rem;background:#faf8f4;}
+.gallery .container{max-width:1100px;margin:0 auto;text-align:center;}
+.gallery h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);color:#140c05;margin-bottom:3rem;}
+.gallery-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:200px 200px;gap:1rem;}
+.gallery-item{border-radius:2px;overflow:hidden;}
+.gallery-item:first-child{grid-row:span 2;}
+.gallery-img{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem;}
+.g1{background:linear-gradient(135deg,#3d2010,#6b3520);}
+.g2{background:linear-gradient(135deg,#2a1508,#4a2510);}
+.g3{background:linear-gradient(135deg,#1e1008,#3d2010);}
+.g4{background:linear-gradient(135deg,#4a2510,#7a3a18);}
+.g5{background:linear-gradient(135deg,#2d1508,#5a2810);}
+
+/* BOOKING */
+.booking{background:linear-gradient(160deg,#1a0f06,#2c1a0a);padding:6rem 2rem;color:#faf8f4;}
+.booking .container{max-width:700px;margin:0 auto;text-align:center;}
+.booking h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);color:#faf8f4;margin-bottom:0.5rem;}
+.booking p{color:rgba(250,248,244,0.6);margin-bottom:2.5rem;font-weight:300;line-height:1.7;}
+.booking-form{background:rgba(255,255,255,0.05);border:1px solid rgba(212,168,83,0.2);border-radius:4px;padding:2.5rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+.form-group{display:flex;flex-direction:column;gap:0.4rem;text-align:left;}
+.form-group label{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(212,168,83,0.8);}
+.form-group input,.form-group select{background:rgba(255,255,255,0.06);border:1px solid rgba(212,168,83,0.2);border-radius:2px;padding:0.75rem 1rem;color:#faf8f4;font-family:'Lato',sans-serif;font-size:0.9rem;outline:none;}
+.form-group input:focus,.form-group select:focus{border-color:#d4a853;}
+.form-group select option{background:#140c05;color:#faf8f4;}
+
+/* HOURS */
+.hours{padding:5rem 2rem;background:#faf8f4;}
+.hours .container{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.hours h2{font-family:'Playfair Display',serif;font-size:2.5rem;color:#140c05;margin-bottom:2rem;}
+.hours-list{display:flex;flex-direction:column;gap:0.75rem;}
+.hours-item{display:flex;justify-content:space-between;padding:0.75rem 0;border-bottom:1px solid rgba(212,168,83,0.15);font-size:0.92rem;}
+.hours-day{color:#5a4a3a;font-weight:400;}
+.hours-time{color:#140c05;font-weight:700;}
+.hours-closed{color:#c0a080;font-weight:300;font-style:italic;}
+.contact-card{background:#140c05;border-radius:4px;padding:2.5rem;color:#faf8f4;}
+.contact-card h3{font-family:'Playfair Display',serif;font-size:1.5rem;color:#d4a853;margin-bottom:1.5rem;}
+.contact-line{display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;font-size:0.9rem;color:rgba(250,248,244,0.8);}
+
+/* FOOTER */
+footer{background:#0d0804;padding:4rem 2rem 2rem;color:rgba(250,248,244,0.5);}
+footer .container{max-width:1100px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+.footer-brand .logo{font-size:1.8rem;display:block;margin-bottom:0.75rem;}
+.footer-brand p{font-size:0.85rem;line-height:1.7;max-width:280px;}
+footer h5{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.15em;color:#d4a853;margin-bottom:1.25rem;}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
+footer li a{font-size:0.85rem;color:rgba(250,248,244,0.5);text-decoration:none;transition:color 0.2s;}
+footer li a:hover{color:#d4a853;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:1.5rem;text-align:center;font-size:0.8rem;}
+
+@media(max-width:768px){
+  .menu-grid{grid-template-columns:1fr;}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
+  .gallery-item:first-child{grid-row:span 1;}
+  .hours .container{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr;}
+  .intro-grid{grid-template-columns:1fr;}
+  nav .nav-links{display:none;}
+  .form-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">La Bella Cucina</div>
+  <ul class="nav-links">
+    <li><a href="#">Menu</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Gallery</a></li>
+    <li><a href="#">Private Dining</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <a href="#booking" class="btn-reserve">Reserve a Table</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Est. 1998 · Authentic Italian · London</div>
+    <h1>La <em>Bella</em><br/>Cucina</h1>
+    <p class="hero-sub">Where every dish tells a story from the heart of Italy. Family recipes, seasonal ingredients, and a warm welcome await.</p>
+    <div class="hero-actions">
+      <a href="#booking" class="btn-gold">Reserve a Table</a>
+      <a href="#menu" class="btn-outline-gold">View Menu</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div>Scroll</div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <span class="section-label">Our Story</span>
+  <div class="section-divider"><div class="divider-line"></div><div class="divider-icon">✦</div><div class="divider-line"></div></div>
+  <h2>A Taste of Italy,<br/>In the Heart of London</h2>
+  <p>Founded by the Moretti family in 1998, La Bella Cucina has been serving authentic Italian cuisine for over 25 years. From handmade pasta to wood-fired dishes, every recipe is a tribute to the flavours of northern Italy.</p>
+  <div class="intro-grid">
+    <div class="intro-item">
+      <div class="num">25+</div>
+      <div class="label">Years Serving London</div>
+    </div>
+    <div class="intro-item">
+      <div class="num">48</div>
+      <div class="label">Seats Available</div>
+    </div>
+    <div class="intro-item">
+      <div class="num">★ 4.9</div>
+      <div class="label">Google Rating</div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="container">
+    <span class="section-label" style="display:block;text-align:center;">Our Kitchen</span>
+    <h2 style="text-align:center;">A Menu Made With Love</h2>
+    <p style="text-align:center;color:rgba(250,248,244,0.5);margin-top:0.5rem;font-weight:300;">All pasta is handmade fresh daily. Ingredients sourced from trusted Italian suppliers.</p>
+
+    <div class="menu-tabs">
+      <button class="menu-tab active">Antipasti</button>
+      <button class="menu-tab">Primi</button>
+      <button class="menu-tab">Secondi</button>
+      <button class="menu-tab">Dolci</button>
+    </div>
+
+    <div class="menu-grid">
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <h4>Burrata e Pomodoro</h4>
+          <p>Creamy burrata, heritage tomatoes, Sicilian basil oil, toasted sourdough</p>
+        </div>
+        <div class="menu-price">£13</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <h4>Carpaccio di Manzo</h4>
+          <p>Paper-thin beef, rocket, Parmigiano shavings, truffle oil, capers</p>
+        </div>
+        <div class="menu-price">£16</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <h4>Cozze al Vino Bianco</h4>
+          <p>Scottish mussels, white wine, garlic, chilli, crusty bread</p>
+        </div>
+        <div class="menu-price">£14</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <h4>Arancini al Ragù</h4>
+          <p>Crispy risotto balls, slow-cooked beef ragù, pecorino, San Marzano dip</p>
+        </div>
+        <div class="menu-price">£11</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <h4>Bruschetta Classica</h4>
+          <p>Toasted ciabatta, vine tomatoes, garlic, extra virgin olive oil, fresh basil</p>
+        </div>
+        <div class="menu-price">£9</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <h4>Antipasto Misto</h4>
+          <p>Selection of cured meats, marinated olives, artichokes, and aged cheeses</p>
+        </div>
+        <div class="menu-price">£19</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:3rem;">
+      <a href="#" class="btn-gold">View Full Menu →</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery">
+  <div class="container">
+    <span class="section-label">Gallery</span>
+    <h2>Our Atmosphere</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item"><div class="gallery-img g1">🍝</div></div>
+      <div class="gallery-item"><div class="gallery-img g2">🕯️</div></div>
+      <div class="gallery-item"><div class="gallery-img g3">🍷</div></div>
+      <div class="gallery-item"><div class="gallery-img g4">🫒</div></div>
+      <div class="gallery-item"><div class="gallery-img g5">🍮</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+  <div class="container">
+    <span class="section-label" style="color:#d4a853;display:block;margin-bottom:0.5rem;">Reservations</span>
+    <h2>Reserve Your Table</h2>
+    <p>Book online or call us on <strong style="color:#d4a853;">020 7123 4567</strong>. We accept bookings up to 30 days in advance.</p>
+    <div class="booking-form">
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input type="text" placeholder="Marco"/></div>
+        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Rossi"/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Date</label><input type="date"/></div>
+        <div class="form-group"><label>Time</label>
+          <select><option>6:00 PM</option><option>6:30 PM</option><option>7:00 PM</option><option>7:30 PM</option><option>8:00 PM</option><option>8:30 PM</option><option>9:00 PM</option></select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Party Size</label>
+          <select><option>1 Guest</option><option>2 Guests</option><option>3 Guests</option><option>4 Guests</option><option>5 Guests</option><option>6 Guests</option><option>7+ Guests (call us)</option></select>
+        </div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+44 7..."/></div>
+      </div>
+      <div class="form-group" style="margin-top:0.5rem;"><label>Special Requests</label><input type="text" placeholder="Allergies, celebrations, high chairs..."/></div>
+      <button class="btn-gold" style="width:100%;margin-top:1.5rem;border:none;cursor:pointer;font-size:0.9rem;padding:1rem;">Confirm Reservation →</button>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS -->
+<section class="hours">
+  <div class="container">
+    <div>
+      <span class="section-label">Visit Us</span>
+      <h2>Opening Hours</h2>
+      <div class="hours-list">
+        <div class="hours-item"><span class="hours-day">Monday</span><span class="hours-closed">Closed</span></div>
+        <div class="hours-item"><span class="hours-day">Tuesday – Thursday</span><span class="hours-time">12pm – 10pm</span></div>
+        <div class="hours-item"><span class="hours-day">Friday</span><span class="hours-time">12pm – 11pm</span></div>
+        <div class="hours-item"><span class="hours-day">Saturday</span><span class="hours-time">11am – 11pm</span></div>
+        <div class="hours-item"><span class="hours-day">Sunday</span><span class="hours-time">11am – 9pm</span></div>
+      </div>
+    </div>
+    <div class="contact-card">
+      <h3>Find Us</h3>
+      <div class="contact-line">📍 42 Vine Street, Covent Garden, London WC2H 9AX</div>
+      <div class="contact-line">📞 020 7123 4567</div>
+      <div class="contact-line">📧 hello@labellacucina.co.uk</div>
+      <div class="contact-line">🚇 Nearest: Covent Garden (3 min walk)</div>
+      <a href="#booking" class="btn-gold" style="display:inline-block;margin-top:1.5rem;text-decoration:none;">Book a Table →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="logo">La Bella Cucina</span>
+        <p>Authentic Italian dining in the heart of London since 1998. Where every meal is a celebration.</p>
+      </div>
+      <div>
+        <h5>Menu</h5>
+        <ul>
+          <li><a href="#">Antipasti</a></li>
+          <li><a href="#">Pasta & Risotto</a></li>
+          <li><a href="#">Mains</a></li>
+          <li><a href="#">Desserts</a></li>
+          <li><a href="#">Wine List</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Visit</h5>
+        <ul>
+          <li><a href="#">Reservations</a></li>
+          <li><a href="#">Private Dining</a></li>
+          <li><a href="#">Gift Vouchers</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 La Bella Cucina. All rights reserved. · <a href="#" style="color:#d4a853;">Privacy Policy</a></p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

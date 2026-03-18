@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | PixelForge Digital — Live Website Mockup Previews</title>
+  <meta name="description" content="View PixelForge Digital's live mockup portfolio. Click any project to preview a full, scrollable website. Restaurant, e-commerce, trades, healthcare, beauty, and fitness." />
+  <meta name="keywords" content="PixelForge portfolio, web design examples UK, live mockup preview, PixelForge Digital work" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://pixelforgedigital.co.uk/pages/portfolio.html" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" href="../images/logo.png" type="image/png" />
+  <link rel="shortcut icon" href="../images/logo.png" type="image/png" />
+  <link rel="apple-touch-icon" href="../images/logo.png" />
+  <style>
+    .preview-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .preview-modal.open { opacity: 1; pointer-events: all; }
+
+    .preview-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1.5rem;
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+      gap: 1rem;
+    }
+    .preview-toolbar-left { display:flex;align-items:center;gap:1rem;min-width:0;flex:1; }
+    .preview-site-name { font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+    .preview-site-tag { background:var(--accent-dim);color:var(--accent);border:1px solid rgba(62,232,181,0.25);padding:0.2rem 0.65rem;border-radius:50px;font-size:0.72rem;font-weight:600;white-space:nowrap; }
+    .preview-toolbar-center { display:flex;gap:0.35rem;background:rgba(255,255,255,0.05);padding:0.3rem;border-radius:8px;flex-shrink:0; }
+    .viewport-btn { padding:0.4rem 0.9rem;border-radius:5px;border:none;background:transparent;color:var(--muted);font-size:0.78rem;cursor:pointer;transition:all 0.2s;font-family:var(--font-body); }
+    .viewport-btn.active { background:var(--accent);color:var(--black); }
+    .viewport-btn:hover:not(.active) { color:var(--white); }
+    .preview-toolbar-right { display:flex;align-items:center;gap:0.75rem;flex-shrink:0; }
+    .preview-close { width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.08);border:none;color:var(--white);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s; }
+    .preview-close:hover { background:#e55;color:#fff; }
+
+    .preview-body { flex:1;display:flex;align-items:center;justify-content:center;padding:1.25rem;overflow:hidden;background:#111; }
+    .preview-frame-wrap { height:100%;transition:width 0.35s cubic-bezier(0.4,0,0.2,1);background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 20px 80px rgba(0,0,0,0.6);position:relative; }
+    .preview-frame-wrap.desktop { width:100%; }
+    .preview-frame-wrap.tablet  { width:768px;max-width:100%; }
+    .preview-frame-wrap.mobile  { width:390px;max-width:100%; }
+    .preview-iframe { width:100%;height:100%;border:none;display:block; }
+    .preview-loading { position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--dark);gap:1rem;color:var(--muted);font-size:0.88rem;z-index:2; }
+    .preview-spinner { width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+
+    /* Portfolio cards with iframe thumbnails */
+    .portfolio-card { cursor:pointer;transition:all 0.3s ease;position:relative;overflow:hidden;border-radius:var(--radius-lg); }
+    .portfolio-card:hover { transform:translateY(-8px);box-shadow:0 24px 60px rgba(0,0,0,0.5),0 0 40px rgba(62,232,181,0.08);border-color:rgba(62,232,181,0.3) !important; }
+    .portfolio-thumb { height:220px;position:relative;overflow:hidden;background:#0e1318; }
+    .thumb-iframe { width:200%;height:200%;transform:scale(0.5);transform-origin:top left;pointer-events:none;border:none;position:absolute;top:0;left:0; }
+    .thumb-overlay { position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.1) 30%,rgba(8,11,15,0.9) 100%);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s; }
+    .portfolio-card:hover .thumb-overlay { opacity:1; }
+    .thumb-cta { background:var(--accent);color:var(--black);font-family:var(--font-display);font-weight:700;font-size:0.85rem;padding:0.6rem 1.4rem;border-radius:50px;transform:translateY(8px);transition:transform 0.3s; }
+    .portfolio-card:hover .thumb-cta { transform:none; }
+    .portfolio-body { padding:1.5rem; }
+
+    .cta-card { background:linear-gradient(135deg,var(--accent-dim),rgba(62,232,181,0.02));border:1px solid rgba(62,232,181,0.2);border-radius:var(--radius-lg);padding:3.5rem 2rem;text-align:center;grid-column:1/-1; }
+    .cta-card h3 { margin-bottom:0.5rem; }
+    .cta-card p { color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem; }
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<section class="page-hero">
+  <div class="page-hero-orb"></div>
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><span>Portfolio</span></div>
+    <span class="section-label">Our Work</span>
+    <h1 style="font-size:clamp(2.2rem,5vw,4rem);">Live Mockup Previews</h1>
+    <p class="hero-sub">Click any project to open a live, scrollable preview — switch between desktop, tablet, and mobile views. Every design is fully bespoke, built from scratch.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="tab-bar" style="margin-bottom:2.5rem;">
+      <button class="tab-btn active" data-filter="all">All</button>
+      <button class="tab-btn" data-filter="food">Food & Hospitality</button>
+      <button class="tab-btn" data-filter="trades">Trades</button>
+      <button class="tab-btn" data-filter="ecommerce">E-Commerce</button>
+      <button class="tab-btn" data-filter="healthcare">Healthcare</button>
+      <button class="tab-btn" data-filter="beauty">Beauty</button>
+      <button class="tab-btn" data-filter="fitness">Fitness</button>
+    </div>
+
+    <div class="portfolio-grid" id="portfolio-grid">
+
+      <div class="portfolio-card card fade-up" data-category="food"
+           onclick="openPreview('../mockups/labellacucina.html','La Bella Cucina','Restaurant · Booking · Menu')">
+        <div class="portfolio-thumb">
+          <iframe class="thumb-iframe" src="../mockups/labellacucina.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+          <div class="thumb-overlay"><span class="thumb-cta">🖥 Open Live Preview</span></div>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-tags"><span class="tag">Restaurant</span><span class="tag">Booking</span><span class="tag">Menu</span></div>
+          <h3 style="margin-top:0.6rem;font-size:1.05rem;">La Bella Cucina</h3>
+          <p style="font-size:0.83rem;color:var(--muted);margin-top:0.3rem;">Italian restaurant · Table booking · Full menu · Gallery</p>
+          <div style="margin-top:0.6rem;font-size:0.72rem;color:rgba(62,232,181,0.5);">labellacucina.co.uk</div>
+        </div>
+      </div>
+
+      <div class="portfolio-card card fade-up stagger-1" data-category="trades"
+           onclick="openPreview('../mockups/hartleybuilders.html','Hartley Builders','Trades · Construction · Quote System')">
+        <div class="portfolio-thumb">
+          <iframe class="thumb-iframe" src="../mockups/hartleybuilders.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+          <div class="thumb-overlay"><span class="thumb-cta">🖥 Open Live Preview</span></div>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-tags"><span class="tag">Trades</span><span class="tag">Quote System</span><span class="tag">Gallery</span></div>
+          <h3 style="margin-top:0.6rem;font-size:1.05rem;">Hartley Builders</h3>
+          <p style="font-size:0.83rem;color:var(--muted);margin-top:0.3rem;">Construction · Extensions · Quote forms · Project gallery</p>
+          <div style="margin-top:0.6rem;font-size:0.72rem;color:rgba(62,232,181,0.5);">hartleybuilders.co.uk</div>
+        </div>
+      </div>
+
+      <div class="portfolio-card card fade-up stagger-2" data-category="ecommerce"
+           onclick="openPreview('../mockups/velourco.html','Velour & Co.','E-Commerce · Fashion · Stripe')">
+        <div class="portfolio-thumb">
+          <iframe class="thumb-iframe" src="../mockups/velourco.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+          <div class="thumb-overlay"><span class="thumb-cta">🖥 Open Live Preview</span></div>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-tags"><span class="tag">E-Commerce</span><span class="tag">Fashion</span><span class="tag">Stripe</span></div>
+          <h3 style="margin-top:0.6rem;font-size:1.05rem;">Velour & Co.</h3>
+          <p style="font-size:0.83rem;color:var(--muted);margin-top:0.3rem;">Fashion e-commerce · Product catalogue · Full checkout</p>
+          <div style="margin-top:0.6rem;font-size:0.72rem;color:rgba(62,232,181,0.5);">velourco.co.uk</div>
+        </div>
+      </div>
+
+      <div class="portfolio-card card fade-up" data-category="healthcare"
+           onclick="openPreview('../mockups/meridiandental.html','Meridian Dental','Healthcare · GDPR · Booking')">
+        <div class="portfolio-thumb">
+          <iframe class="thumb-iframe" src="../mockups/meridiandental.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+          <div class="thumb-overlay"><span class="thumb-cta">🖥 Open Live Preview</span></div>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-tags"><span class="tag">Healthcare</span><span class="tag">GDPR</span><span class="tag">Booking</span></div>
+          <h3 style="margin-top:0.6rem;font-size:1.05rem;">Meridian Dental</h3>
+          <p style="font-size:0.83rem;color:var(--muted);margin-top:0.3rem;">NHS & private dental · Online booking · Treatments · Team</p>
+          <div style="margin-top:0.6rem;font-size:0.72rem;color:rgba(62,232,181,0.5);">meridiandental.co.uk</div>
+        </div>
+      </div>
+
+      <div class="portfolio-card card fade-up stagger-1" data-category="beauty"
+           onclick="openPreview('../mockups/lumieresalon.html','Lumière Salon','Beauty · Booking · Luxury')">
+        <div class="portfolio-thumb">
+          <iframe class="thumb-iframe" src="../mockups/lumieresalon.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+          <div class="thumb-overlay"><span class="thumb-cta">🖥 Open Live Preview</span></div>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-tags"><span class="tag">Beauty</span><span class="tag">Booking</span><span class="tag">Luxury</span></div>
+          <h3 style="margin-top:0.6rem;font-size:1.05rem;">Lumière Salon</h3>
+          <p style="font-size:0.83rem;color:var(--muted);margin-top:0.3rem;">Hair & beauty · Mayfair · Booking · Stylists · Gallery</p>
+          <div style="margin-top:0.6rem;font-size:0.72rem;color:rgba(62,232,181,0.5);">lumieresalon.co.uk</div>
+        </div>
+      </div>
+
+      <div class="portfolio-card card fade-up stagger-2" data-category="fitness"
+           onclick="openPreview('../mockups/ironcorefitness.html','IronCore Fitness','Fitness · Memberships · Timetable')">
+        <div class="portfolio-thumb">
+          <iframe class="thumb-iframe" src="../mockups/ironcorefitness.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+          <div class="thumb-overlay"><span class="thumb-cta">🖥 Open Live Preview</span></div>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-tags"><span class="tag">Fitness</span><span class="tag">Memberships</span><span class="tag">Timetable</span></div>
+          <h3 style="margin-top:0.6rem;font-size:1.05rem;">IronCore Fitness</h3>
+          <p style="font-size:0.83rem;color:var(--muted);margin-top:0.3rem;">Gym · Class timetable · Memberships · Free trial signup</p>
+          <div style="margin-top:0.6rem;font-size:0.72rem;color:rgba(62,232,181,0.5);">ironcorefitness.co.uk</div>
+        </div>
+      </div>
+
+      <div class="cta-card fade-up">
+        <h3>Don't See Your Industry?</h3>
+        <p>I build for every type of UK business. Tell me your industry and I'll show you exactly what I can create — or just get your free quote today.</p>
+        <a href="quote.html" class="btn btn-primary">Get a Free Quote →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PREVIEW MODAL -->
+<div class="preview-modal" id="preview-modal">
+  <div class="preview-toolbar">
+    <div class="preview-toolbar-left">
+      <span class="preview-site-name" id="preview-site-name">Preview</span>
+      <span class="preview-site-tag" id="preview-site-tag">Mockup</span>
+    </div>
+    <div class="preview-toolbar-center">
+      <button class="viewport-btn active" onclick="setViewport('desktop')" id="vp-desktop">🖥 Desktop</button>
+      <button class="viewport-btn" onclick="setViewport('tablet')" id="vp-tablet">📱 Tablet</button>
+      <button class="viewport-btn" onclick="setViewport('mobile')" id="vp-mobile">📲 Mobile</button>
+    </div>
+    <div class="preview-toolbar-right">
+      <a href="quote.html" class="btn btn-primary btn-sm">Get This Style →</a>
+      <button class="preview-close" onclick="closePreview()">✕</button>
+    </div>
+  </div>
+  <div class="preview-body">
+    <div class="preview-frame-wrap desktop" id="preview-frame-wrap">
+      <div class="preview-loading" id="preview-loading">
+        <div class="preview-spinner"></div>
+        <span>Loading preview…</span>
+      </div>
+      <iframe id="preview-iframe" class="preview-iframe" src="" title="Site preview"
+              onload="document.getElementById('preview-loading').style.display='none'"></iframe>
+    </div>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="../js/nav.js"></script>
+<script src="../js/main.js"></script>
+<script>
+  const modal   = document.getElementById('preview-modal');
+  const iframe  = document.getElementById('preview-iframe');
+  const frameWrap = document.getElementById('preview-frame-wrap');
+  const loadingEl = document.getElementById('preview-loading');
+
+  function openPreview(url, name, tag) {
+    document.getElementById('preview-site-name').textContent = name;
+    document.getElementById('preview-site-tag').textContent  = tag;
+    loadingEl.style.display = 'flex';
+    iframe.src = url;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setViewport('desktop');
+  }
+
+  function closePreview() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => { iframe.src = ''; }, 400);
+  }
+
+  function setViewport(vp) {
+    frameWrap.className = 'preview-frame-wrap ' + vp;
+    ['desktop','tablet','mobile'].forEach(v => {
+      document.getElementById('vp-' + v).classList.toggle('active', v === vp);
+    });
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePreview(); });
+</script>
+</body>
+</html>

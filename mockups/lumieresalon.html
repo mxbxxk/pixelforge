@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Lumière — Hair & Beauty, Mayfair</title>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--blush:#f5e6e0;--rose:#c9837a;--dark:#1a1410;--gold:#bfa882;--cream:#faf7f4;}
+body{font-family:'Josefin Sans',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:var(--cream);border-bottom:1px solid rgba(191,168,130,0.25);padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:68px;}
+.logo{font-family:'EB Garamond',serif;font-size:1.8rem;font-weight:400;color:var(--dark);letter-spacing:0.08em;}
+.logo-sub{font-family:'Josefin Sans',sans-serif;font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);display:block;text-align:center;margin-top:-6px;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{color:#5a4a3a;font-size:0.75rem;text-decoration:none;text-transform:uppercase;letter-spacing:0.15em;transition:color 0.2s;}
+.nav-links a:hover{color:var(--rose);}
+.btn-booking{background:var(--dark);color:var(--cream);padding:0.6rem 1.6rem;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.15em;text-decoration:none;transition:all 0.2s;}
+.btn-booking:hover{background:var(--rose);}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:90vh;}
+.hero-right{background:linear-gradient(135deg,#f0ddd6,#e8c8c0,#d4a89f);display:flex;align-items:center;justify-content:center;font-size:9rem;position:relative;overflow:hidden;}
+.hero-right::before{content:'LUMIÈRE';position:absolute;font-family:'EB Garamond',serif;font-size:7rem;font-weight:400;color:rgba(255,255,255,0.12);letter-spacing:0.1em;white-space:nowrap;}
+.hero-left{background:var(--cream);display:flex;align-items:center;padding:5rem 4rem;}
+.hero-eyebrow{font-size:0.68rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:block;}
+.hero h1{font-family:'EB Garamond',serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:400;color:var(--dark);line-height:1.1;margin-bottom:1.25rem;}
+.hero h1 em{font-style:italic;color:var(--rose);}
+.hero-sub{font-size:0.88rem;color:#7a6a5a;line-height:1.9;max-width:400px;margin-bottom:2.5rem;font-weight:300;letter-spacing:0.02em;}
+.hero-actions{display:flex;gap:1rem;align-items:center;}
+.btn-rose{background:var(--rose);color:#fff;padding:0.9rem 2.2rem;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;text-decoration:none;transition:all 0.25s;}
+.btn-rose:hover{background:#b07268;transform:translateY(-2px);}
+.btn-text{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--dark);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px;transition:color 0.2s;}
+.btn-text:hover{color:var(--rose);}
+
+/* SERVICES */
+.services{padding:6rem 2rem;background:#fff;}
+.services .container{max-width:1100px;margin:0 auto;}
+.section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3.5rem;flex-wrap:wrap;gap:1rem;}
+.section-label{font-size:0.68rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:0.6rem;}
+.section-title{font-family:'EB Garamond',serif;font-size:clamp(2rem,3.5vw,2.8rem);font-weight:400;color:var(--dark);}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(191,168,130,0.15);}
+.service-card{background:#fff;padding:2.5rem 2rem;transition:background 0.25s;}
+.service-card:hover{background:var(--blush);}
+.service-icon{font-size:1.8rem;margin-bottom:1.25rem;display:block;}
+.service-card h3{font-family:'EB Garamond',serif;font-size:1.3rem;color:var(--dark);margin-bottom:0.75rem;}
+.service-card p{font-size:0.82rem;color:#7a6a5a;line-height:1.7;}
+.price-list{margin-top:1.5rem;display:flex;flex-direction:column;gap:0.4rem;}
+.price-item{display:flex;justify-content:space-between;font-size:0.8rem;padding:0.3rem 0;border-bottom:1px solid rgba(191,168,130,0.15);}
+.price-name{color:#5a4a3a;}
+.price-val{color:var(--dark);font-weight:600;}
+
+/* GALLERY */
+.gallery{padding:0;}
+.gallery-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;grid-template-rows:280px 280px;}
+.gallery-cell{display:flex;align-items:center;justify-content:center;font-size:4.5rem;}
+.g-span{grid-column:span 2;grid-row:span 2;}
+.ga{background:linear-gradient(135deg,#e8c8c0,#d4a09a);}
+.gb{background:linear-gradient(135deg,#d4c0b8,#c0a89a);}
+.gc{background:linear-gradient(135deg,#e0d0c8,#c8b8b0);}
+.gd{background:linear-gradient(135deg,#c8b0a8,#b89888);}
+.ge{background:linear-gradient(135deg,#d8c8c0,#c0a8a0);}
+
+/* STYLISTS */
+.stylists{padding:6rem 2rem;background:var(--blush);}
+.stylists .container{max-width:1100px;margin:0 auto;text-align:center;}
+.stylists h2{font-family:'EB Garamond',serif;font-size:clamp(2rem,3.5vw,2.8rem);color:var(--dark);margin-bottom:3rem;}
+.stylists-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;}
+.stylist-card{background:var(--cream);padding:1.75rem;transition:transform 0.25s;}
+.stylist-card:hover{transform:translateY(-4px);}
+.stylist-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#a86a60);margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-size:2rem;}
+.stylist-name{font-family:'EB Garamond',serif;font-size:1.2rem;color:var(--dark);margin-bottom:0.2rem;}
+.stylist-role{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);margin-bottom:0.75rem;}
+.stylist-spec{font-size:0.8rem;color:#7a6a5a;line-height:1.6;}
+
+/* BOOKING */
+.booking{padding:6rem 2rem;background:#fff;}
+.booking .container{max-width:950px;margin:0 auto;}
+.booking-inner{display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;align-items:start;}
+.booking-left h2{font-family:'EB Garamond',serif;font-size:2.5rem;color:var(--dark);margin-bottom:1rem;}
+.booking-left p{font-size:0.88rem;color:#7a6a5a;line-height:1.8;margin-bottom:2rem;}
+.contact-list{display:flex;flex-direction:column;gap:1rem;}
+.contact-item{display:flex;gap:0.75rem;font-size:0.88rem;color:#5a4a3a;}
+.booking-form{background:var(--blush);padding:2.5rem;}
+.form-group{margin-bottom:1.1rem;}
+.form-group label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);display:block;margin-bottom:0.4rem;}
+.form-group input,.form-group select{width:100%;border:1px solid rgba(191,168,130,0.35);background:#fff;padding:0.8rem 1rem;font-family:'Josefin Sans',sans-serif;font-size:0.85rem;color:var(--dark);outline:none;transition:border-color 0.2s;}
+.form-group input:focus,.form-group select:focus{border-color:var(--rose);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+
+/* REVIEWS */
+.reviews{padding:5rem 2rem;background:var(--cream);}
+.reviews .container{max-width:1100px;margin:0 auto;text-align:center;}
+.reviews h2{font-family:'EB Garamond',serif;font-size:2.5rem;color:var(--dark);margin-bottom:3rem;}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.review-card{background:#fff;padding:2rem;border:1px solid rgba(191,168,130,0.2);}
+.stars{color:var(--gold);font-size:0.85rem;margin-bottom:0.75rem;letter-spacing:2px;}
+.review-text{font-family:'EB Garamond',serif;font-size:1rem;font-style:italic;color:#5a4a3a;line-height:1.75;margin-bottom:1.25rem;}
+.reviewer-name{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);}
+
+/* FOOTER */
+footer{background:var(--dark);padding:4rem 2rem 2rem;color:rgba(250,247,244,0.5);}
+footer .container{max-width:1100px;margin:0 auto;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+.footer-logo{font-family:'EB Garamond',serif;font-size:2rem;color:var(--cream);display:block;margin-bottom:0.5rem;}
+footer h5{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.25em;color:var(--gold);margin-bottom:1.25rem;}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
+footer li a{font-size:0.82rem;color:rgba(250,247,244,0.5);text-decoration:none;transition:color 0.2s;}
+footer li a:hover{color:var(--gold);}
+.footer-bottom{border-top:1px solid rgba(250,247,244,0.08);padding-top:1.5rem;text-align:center;font-size:0.75rem;}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;}
+  .hero-right{height:40vh;}
+  .services-grid{grid-template-columns:1fr 1fr;}
+  .gallery-grid{grid-template-columns:1fr 1fr;}
+  .g-span{grid-column:span 1;grid-row:span 1;}
+  .stylists-grid{grid-template-columns:1fr 1fr;}
+  .booking-inner{grid-template-columns:1fr;}
+  .reviews-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  nav .nav-links{display:none;}
+  .form-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Lumière<span>Hair · Beauty · Mayfair</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Our Team</a></li>
+    <li><a href="#">Gallery</a></li>
+    <li><a href="#">Prices</a></li>
+    <li><a href="#">Gift Vouchers</a></li>
+  </ul>
+  <a href="#booking" class="btn-booking">Book Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div>
+      <span class="hero-eyebrow">Mayfair, London · Est. 2015</span>
+      <h1>Where Beauty<br/>Meets <em>Artistry</em></h1>
+      <p class="hero-sub">A luxury hair and beauty salon in the heart of Mayfair, combining expert technique with a deeply personal approach. Every appointment is an experience.</p>
+      <div class="hero-actions">
+        <a href="#booking" class="btn-rose">Book an Appointment</a>
+        <a href="#services" class="btn-text">View Services</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">💇‍♀️</div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <span class="section-label">What We Offer</span>
+        <div class="section-title">Our Services</div>
+      </div>
+      <a href="#booking" class="btn-rose" style="text-decoration:none;font-size:0.72rem;letter-spacing:0.18em;">Book Now →</a>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">✂️</span>
+        <h3>Hair Cutting & Styling</h3>
+        <p>Precision cuts tailored to your face shape, hair texture, and lifestyle. From classics to contemporary.</p>
+        <div class="price-list">
+          <div class="price-item"><span class="price-name">Women's Cut & Blow Dry</span><span class="price-val">£85</span></div>
+          <div class="price-item"><span class="price-name">Men's Cut & Style</span><span class="price-val">£45</span></div>
+          <div class="price-item"><span class="price-name">Blow Dry Only</span><span class="price-val">£55</span></div>
+          <div class="price-item"><span class="price-name">Hair-Up / Occasion</span><span class="price-val">From £75</span></div>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🎨</span>
+        <h3>Colour & Highlights</h3>
+        <p>From natural balayage to vivid fashion colour — our colour specialists achieve stunning, long-lasting results.</p>
+        <div class="price-list">
+          <div class="price-item"><span class="price-name">Full Head Colour</span><span class="price-val">From £95</span></div>
+          <div class="price-item"><span class="price-name">Balayage / Ombré</span><span class="price-val">From £145</span></div>
+          <div class="price-item"><span class="price-name">Highlights (Full)</span><span class="price-val">From £120</span></div>
+          <div class="price-item"><span class="price-name">Toner / Gloss</span><span class="price-val">£45</span></div>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💅</span>
+        <h3>Beauty Treatments</h3>
+        <p>Luxurious skincare, lash, brow, and body treatments using premium products and expert techniques.</p>
+        <div class="price-list">
+          <div class="price-item"><span class="price-name">Luxury Facial</span><span class="price-val">From £85</span></div>
+          <div class="price-item"><span class="price-name">Lash Lift & Tint</span><span class="price-val">£65</span></div>
+          <div class="price-item"><span class="price-name">Brow Lamination</span><span class="price-val">£55</span></div>
+          <div class="price-item"><span class="price-name">Gel Manicure</span><span class="price-val">£45</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery">
+  <div class="gallery-grid">
+    <div class="gallery-cell g-span ga">💇‍♀️</div>
+    <div class="gallery-cell gb">🌸</div>
+    <div class="gallery-cell gc">💄</div>
+    <div class="gallery-cell gd">✨</div>
+    <div class="gallery-cell ge">🪞</div>
+  </div>
+</section>
+
+<!-- STYLISTS -->
+<section class="stylists">
+  <div class="container">
+    <span class="section-label" style="display:block;margin-bottom:0.75rem;">The Team</span>
+    <h2>Meet Your Stylists</h2>
+    <div class="stylists-grid">
+      <div class="stylist-card"><div class="stylist-avatar">👩‍🎨</div><div class="stylist-name">Isabelle Laurent</div><div class="stylist-role">Creative Director</div><div class="stylist-spec">20 years experience · Colour specialist · Vidal Sassoon trained</div></div>
+      <div class="stylist-card"><div class="stylist-avatar">👨‍🎨</div><div class="stylist-name">Marco Vitale</div><div class="stylist-role">Senior Stylist</div><div class="stylist-spec">12 years experience · Precision cuts · Men's grooming specialist</div></div>
+      <div class="stylist-card"><div class="stylist-avatar">👩‍🎨</div><div class="stylist-name">Zoe Harrison</div><div class="stylist-role">Colour Artist</div><div class="stylist-spec">Balayage & highlights · Loreal Master Colourist · 9 years experience</div></div>
+      <div class="stylist-card"><div class="stylist-avatar">👩‍🔬</div><div class="stylist-name">Priya Anand</div><div class="stylist-role">Beauty Therapist</div><div class="stylist-spec">VTCT qualified · Facials, lash & brow specialist · 7 years experience</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+  <div class="container">
+    <div class="booking-inner">
+      <div class="booking-left">
+        <h2>Book Your Visit</h2>
+        <p>Reserve your appointment online or call us directly. We recommend booking 1–2 weeks ahead for colour appointments.</p>
+        <div class="contact-list">
+          <div class="contact-item">📞 <strong style="color:var(--dark);">020 7890 1234</strong></div>
+          <div class="contact-item">📍 48 South Audley Street, Mayfair, London W1K 2QH</div>
+          <div class="contact-item">🕐 Mon–Sat: 9am–7pm · Sun: 10am–5pm</div>
+          <div class="contact-item">📧 hello@lumieresalon.co.uk</div>
+        </div>
+        <div style="margin-top:2rem;padding:1.25rem;background:var(--blush);border-left:3px solid var(--rose);">
+          <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);margin-bottom:0.4rem;">Gift Vouchers</div>
+          <div style="font-size:0.88rem;color:#5a4a3a;">Give the gift of beauty — available in any denomination. Perfect for birthdays and special occasions.</div>
+          <a href="#" style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--rose);text-decoration:none;border-bottom:1px solid currentColor;display:inline-block;margin-top:0.75rem;">Purchase a Voucher →</a>
+        </div>
+      </div>
+      <div class="booking-form">
+        <div class="form-row">
+          <div class="form-group"><label>First Name *</label><input type="text" placeholder="Sophie"/></div>
+          <div class="form-group"><label>Last Name *</label><input type="text" placeholder="Williams"/></div>
+        </div>
+        <div class="form-group"><label>Email Address *</label><input type="email" placeholder="sophie@email.co.uk"/></div>
+        <div class="form-group"><label>Phone Number *</label><input type="tel" placeholder="020 7..."/></div>
+        <div class="form-group"><label>Service *</label>
+          <select><option>Women's Cut & Blow Dry</option><option>Colour — Balayage / Ombré</option><option>Colour — Full Head</option><option>Highlights</option><option>Blow Dry</option><option>Luxury Facial</option><option>Lash Lift & Tint</option><option>Brow Lamination</option><option>Gel Manicure</option><option>Other</option></select>
+        </div>
+        <div class="form-group"><label>Preferred Stylist</label>
+          <select><option>No Preference</option><option>Isabelle Laurent</option><option>Marco Vitale</option><option>Zoe Harrison</option><option>Priya Anand</option></select>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Preferred Date</label><input type="date"/></div>
+          <div class="form-group"><label>Preferred Time</label><select><option>9:00 AM</option><option>10:00 AM</option><option>11:00 AM</option><option>12:00 PM</option><option>1:00 PM</option><option>2:00 PM</option><option>3:00 PM</option><option>4:00 PM</option><option>5:00 PM</option></select></div>
+        </div>
+        <button class="btn-rose" style="width:100%;border:none;cursor:pointer;font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;padding:1rem;margin-top:0.5rem;">Request Booking →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="container">
+    <span class="section-label" style="display:block;margin-bottom:0.75rem;">Testimonials</span>
+    <h2>What Our Clients Say</h2>
+    <div class="reviews-grid">
+      <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">"Isabelle has been doing my hair for 5 years and I wouldn't trust anyone else. My balayage always looks incredible and lasts for months."</p><div class="reviewer-name">Charlotte B. — Google Review</div></div>
+      <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">"The most relaxing salon experience I've ever had. Lovely team, stunning results, and the facial from Priya was genuinely one of the best I've had."</p><div class="reviewer-name">Emilia T. — Google Review</div></div>
+      <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">"Came in for a men's cut with Marco — absolutely spot on. Relaxed atmosphere, great attention to detail. Will not be going anywhere else."</p><div class="reviewer-name">Oliver K. — Google Review</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <span class="footer-logo">Lumière</span>
+        <p style="font-size:0.82rem;line-height:1.7;max-width:280px;">Luxury hair and beauty in the heart of Mayfair. Crafting confidence, one appointment at a time.</p>
+        <div style="margin-top:1rem;font-size:0.82rem;color:rgba(250,247,244,0.7);">📞 020 7890 1234</div>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#">Hair Cutting</a></li>
+          <li><a href="#">Colour & Highlights</a></li>
+          <li><a href="#">Facials</a></li>
+          <li><a href="#">Lash & Brow</a></li>
+          <li><a href="#">Gift Vouchers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Visit</h5>
+        <ul>
+          <li><a href="#">Book Online</a></li>
+          <li><a href="#">Meet the Team</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 Lumière Salon. All rights reserved. · <a href="#" style="color:var(--gold);">Privacy Policy</a></p></div>
+  </div>
+</footer>
+
+</body>
+</html>
